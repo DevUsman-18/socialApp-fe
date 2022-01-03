@@ -17,6 +17,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
     const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState(null);
     const navigate = useNavigate();
 
     const signup = (username, bio, email, password) => {
@@ -40,22 +41,30 @@ function useProvideAuth() {
                 password: password
         }).then(response => {
             if (response.data.success) {
-                return response.data.data
+                setUser(response.data.data)
+               return response.data.data
             } else {
                 navigate('/login')
             }
         }).then( async (user) => {
-            let profileResponse = await axios.get(`http://localhost:8000/myProfile`, {
+            // console.log("got user", user)
+            return await axios.get(`http://localhost:8000/myProfile`, {
                 headers: { Authorization: `Bearer ${user.access_token}` }
             }).then(response => {
-                let userData = {
-                    posts: response.data.posts,
-                    ...user
+                // let userData = {
+                //     posts: response.data.posts,
+                //     ...user
+                // }
+                // console.log(response)
+                if(response.data.success) {
+                    // setUser(response.data.data)
+                    console.log("setting posts", response.data.posts)
+                    setPosts(response.data.posts)
                 }
-                setUser(userData)
-            }).then(()=>{
-                navigate('/myProfile')
-            })
+            }).then(() => {
+                    navigate('/myProfile')
+                }
+            )
         })
     };
 
@@ -66,6 +75,7 @@ function useProvideAuth() {
 
     return {
         user,
+        posts,
         signup,
         signin,
         signout,

@@ -52,7 +52,7 @@ function UserProfilePage() {
                 <UserProfileUsername username={auth.user}/>
             </Container>
             <UserProfileWritePost />
-                <UserPosts posts={auth.user}/>
+                <UserPosts posts={auth.posts}/>
          </ThemeProvider>
     )
 }

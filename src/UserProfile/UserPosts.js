@@ -2,12 +2,11 @@ import UserPostConstruction from "./UserPostConstruction";
 
 
 function UserPosts(posts) {
-    console.log(posts.posts.posts)
-    let postsFromDB = posts.posts.posts
-    return (
+    console.log("posts", posts.posts)
+     return (
         <>
             {
-                 postsFromDB.map(post => <UserPostConstruction content={post.content} />)
+                 posts.posts[0].map(post => <UserPostConstruction content={post.content} />)
             }
         </>
     )
