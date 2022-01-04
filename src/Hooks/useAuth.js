@@ -47,17 +47,10 @@ function useProvideAuth() {
                 navigate('/login')
             }
         }).then( async (user) => {
-            // console.log("got user", user)
             return await axios.get(`http://localhost:8000/myProfile`, {
                 headers: { Authorization: `Bearer ${user.access_token}` }
             }).then(response => {
-                // let userData = {
-                //     posts: response.data.posts,
-                //     ...user
-                // }
-                // console.log(response)
                 if(response.data.success) {
-                    // setUser(response.data.data)
                     console.log("setting posts", response.data.posts)
                     setPosts(response.data.posts)
                 }

@@ -54,13 +54,6 @@ const LoginForm = () => {
             setPassword(htmlEntities(password))
         }
         let userId = auth.signin(email, password)
-
-        // let profileResponse = await axios.get(`http://localhost:8000/myProfile`, {
-        //     id: userId
-        // }).then(response => {
-        //     console.log(response)
-        // })
-        // navigate('/myProfile')
     }
 
     return (
