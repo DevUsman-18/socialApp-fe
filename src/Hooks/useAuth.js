@@ -22,7 +22,7 @@ function useProvideAuth() {
 
     const signup = (username, bio, email, password) => {
         if (username === '' || email === '' || password === '') return;
-        axios.post(`http://localhost:8000/signUp`, {
+        axios.post(`http://localhost:3306/signUp`, {
             username: username,
             bio: bio,
             email: email,
@@ -36,20 +36,23 @@ function useProvideAuth() {
 
     const signin = async (email, password) => {
         if (email === '' || password === '') return;
-        let response = await axios.post(`http://localhost:8000/login`, {
-                email: email,
-                password: password
+         await axios.post(`http://localhost:3306/login`, {
+                "email": email,
+                "password": password
         }).then(response => {
             if (response.data.success) {
                 setUser(response.data.data)
-               return response.data.data
+               return response.data
             } else {
                 navigate('/login')
             }
         }).then( async (user) => {
-            return await axios.get(`http://localhost:8000/myProfile`, {
-                headers: { Authorization: `Bearer ${user.access_token}` }
+             console.log("token", user["data"]["access_token"])
+            await axios.get(`http://localhost:3306/myProfile`, {
+                //header isnt being sent properly or JWT check is not functioning
+                headers: { Authorization: `Bearer ${user['access_token']}` }
             }).then(response => {
+                console.log("this far")
                 if(response.data.success) {
                     console.log("setting posts", response.data.posts)
                     setPosts(response.data.posts)

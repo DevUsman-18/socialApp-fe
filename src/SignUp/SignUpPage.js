@@ -1,5 +1,5 @@
 import Container from '@mui/material/Container';
-import {Stack, ThemeProvider} from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import theme from "../Themes";
 import SignUpTitle from "./SignUpTitle";
 import SignUpForm from "./SignUpForm";

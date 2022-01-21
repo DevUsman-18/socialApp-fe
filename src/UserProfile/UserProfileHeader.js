@@ -1,7 +1,5 @@
-import {MDCBanner} from '@material/banner';
 import UserProfileBio from "./UserProfileBio";
 import UserProfileLogoutButton from "./UserProfileLogoutButton";
-import RegisterButton from "../SignUp/RegisterButton";
 import {Stack} from "@mui/material";
 import React from "react";
 // const banner = new MDCBanner(document.querySelector('.mdc-banner'));

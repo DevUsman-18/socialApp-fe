@@ -3,9 +3,8 @@ import TextField from '@mui/material/TextField';
 import {Stack} from "@mui/material";
 import GoToProfile from "./GoToProfile";
 import {useAuth} from "../Hooks/useAuth";
-import {useNavigate} from "react-router-dom";
+
 import FormHelperText from "@mui/material/FormHelperText";
-import axios from "axios";
 
 
 const LoginForm = () => {
@@ -13,7 +12,6 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
 
     const auth = useAuth()
-    const navigate = useNavigate();
 
     function ValidateEmail(mail)
     {
@@ -39,7 +37,6 @@ const LoginForm = () => {
     }
 
     const handleSubmit = async (e) => {
-        console.log('A email was submitted: '  + password + email);
         e.preventDefault();
         if (!ValidateEmail(email) || email.length === 0){
             document.getElementById("error").textContent = 'Password or email not recognized'
@@ -53,7 +50,7 @@ const LoginForm = () => {
             document.getElementById("error").textContent = ''
             setPassword(htmlEntities(password))
         }
-        let userId = auth.signin(email, password)
+        await auth.signin(email, password)
     }
 
     return (

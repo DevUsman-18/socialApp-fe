@@ -1,9 +1,6 @@
 import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import {Stack} from "@mui/material";
-import {useAuth} from "../Hooks/useAuth";
-import {useNavigate} from "react-router-dom";
-import FormHelperText from "@mui/material/FormHelperText";
 import NewPostButton from "./NewPostButton";
 
 

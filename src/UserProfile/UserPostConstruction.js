@@ -1,5 +1,3 @@
-import {ThemeProvider} from "@mui/material";
-import theme from "../Themes";
 import Container from "@mui/material/Container";
 
 function UserPostConstruction ({content}){
